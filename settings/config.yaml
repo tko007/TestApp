@@ -1,0 +1,12 @@
+# path to chrome driver
+driver: C:\BociStuff\driver\chromedriver\chromedriver.exe
+
+# limit for multiplier
+limit: 13.01
+
+parties: 
+  Deutschland : [ 'Bundesliga' ]
+  England : [ 'Premier League' ]
+  Italien : [ 'Seria A' ]
+  Spanien : [ 'Primera Division' ]
+  Frankreich" : [ 'Ligue 2' ]
