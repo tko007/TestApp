@@ -13,8 +13,8 @@ import java.util.Date;
  */
 public class Statistic {
 
-    private static final String DATE_PATTERN = "dd/mm/yy";
-    private static final DateTimeFormatter FORMATTER =
+    public static final String DATE_PATTERN = "dd/MM/yy";
+    public static final DateTimeFormatter FORMATTER =
             DateTimeFormatter.ofPattern(DATE_PATTERN);
 
     /*
@@ -78,8 +78,8 @@ public class Statistic {
         return div;
     }
 
-    public LocalDateTime getDate() {
-        return LocalDateTime.parse(date, FORMATTER);
+    public LocalDate getDate() {
+        return LocalDate.parse(date, FORMATTER);
     }
 
     public String getHomeTeam() {

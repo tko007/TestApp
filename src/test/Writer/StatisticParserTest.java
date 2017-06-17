@@ -2,6 +2,7 @@ package Writer;
 
 import at.tko.collector.classes.Statistic;
 import at.tko.collector.interfaces.CsvParser;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,7 +36,22 @@ public class StatisticParserTest {
         List<Statistic> res =
                 stringParser.parseFootballStatistics(new StringReader(statistic));
 
-        // just write out stuff in a JS way
-        res.stream().forEach(element -> System.out.println(element));
+        Assert.assertNotNull(res);
+        Assert.assertTrue(res.size() == 1);
+
+        res.stream().forEach(element -> {
+            System.out.println(element);
+            Assert.assertEquals("E0", element.getDiv());
+            Assert.assertEquals("13/08/16", element.getDate().format(Statistic.FORMATTER));
+            Assert.assertEquals("Burnley", element.getHomeTeam());
+            Assert.assertEquals("Swansea", element.getAwayTeam());
+            Assert.assertEquals("0", element.getFTHG());
+            Assert.assertEquals("1", element.getFTAG());
+            Assert.assertEquals("A", element.getFTR());
+            Assert.assertEquals(0, element.getHTHG());
+            Assert.assertEquals(0, element.getHTAG());
+            Assert.assertEquals("D", element.getHTR());
+        });
+
     }
 }

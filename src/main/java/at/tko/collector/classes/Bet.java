@@ -13,9 +13,9 @@ import java.util.regex.Pattern;
  */
 public class Bet implements Parsable{
 
-    private static final String DATE_PATTERN = "dd.MM.yy HH:mm";
     private static final String LINE_SEPARATOR = "\n";
-    private static final DateTimeFormatter FORMATTER =
+    public static final String DATE_PATTERN = "dd.MM.yy HH:mm";
+    public static final DateTimeFormatter FORMATTER =
             DateTimeFormatter.ofPattern(DATE_PATTERN);
 
     private String firstRow;
