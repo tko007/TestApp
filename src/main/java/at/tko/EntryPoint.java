@@ -25,8 +25,6 @@ public class EntryPoint {
             HandiCap handiCap = new HandiCap(starter.getDriver());
             handiCap.openHandiCapTable();
 
-            ExcelCreator.writeBetsToFile(
-                    handiCap.collectBets());
 
         } catch (Exception e){
             e.printStackTrace();

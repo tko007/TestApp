@@ -3,7 +3,10 @@ package at.tko.collector.classes;
 import at.tko.collector.interfaces.Parsable;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -82,6 +85,9 @@ public class Bet implements Parsable{
         private String teamHome;
         private String teamAway;
         private String handiCap;
+        private String favoriteTeam;
+        private float favoriteTeamMultiplier;
+        private String otherTeam;
         private LocalDateTime timeOfPlay;
 
         private BetParsed() {
@@ -106,6 +112,10 @@ public class Bet implements Parsable{
 
             timeOfPlay = LocalDateTime.parse(date, FORMATTER);
 
+            // calculating on a bet which is a favorite one team
+            favoriteTeam = team1Win < team2Win ? teamHome : teamAway;
+            favoriteTeamMultiplier = favoriteTeam.equals(teamHome) ? team1Win : team2Win;
+            otherTeam = favoriteTeam.equals(teamHome) ? teamAway : teamHome;
         }
 
         public String getTeamHome() {
@@ -122,6 +132,24 @@ public class Bet implements Parsable{
 
         public LocalDateTime getTimeOfPlay() {
             return timeOfPlay;
+        }
+
+        public Date getTimeOfPlayDate() {
+            // assuming it will call
+            return Date.from(timeOfPlay.toLocalDate()
+                    .atStartOfDay(ZoneId.systemDefault()).toInstant());
+        }
+
+        public String getFavoriteTeam() {
+            return favoriteTeam;
+        }
+
+        public String getOtherTeam() {
+            return otherTeam;
+        }
+
+        public float getFavoriteTeamMultiplier() {
+            return favoriteTeamMultiplier;
         }
 
         @Override

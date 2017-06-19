@@ -30,6 +30,8 @@ public class ExcelFile {
                 "1.399999976\n" +
                 "5.349999905\n" +
                 "4.619999886\n");
+
+        testBet.doParse();
     }
 
     /**
@@ -45,8 +47,6 @@ public class ExcelFile {
         float expectedEqual = 5.349999905f;
         LocalDateTime expectedDate =
                 LocalDateTime.of(2017, 5, 30, 20, 0);
-
-        testBet.doParse();
 
         Assert.assertEquals(expectedTeamHome,
                 testBet.getBetParsed().getTeamHome());
@@ -64,6 +64,6 @@ public class ExcelFile {
 
     @Test
     public void testExcelFileWriter() throws IOException {
-        ExcelCreator.writeBetsToFile(Arrays.asList(testBet));
+        new ExcelCreator(Arrays.asList(testBet));
     }
 }
